@@ -8,53 +8,77 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class CardDatabase 
-implements IDatabase<Card>{
+implements IDatabase<Card>
+{
 
 	private static final String DB_Name = "cards.dat";
 	
-	public boolean save(Card item) {
+	public boolean save(Card item) 
+	{
 		boolean success = false;
 		ObjectOutputStream oos = null;
-		try {
+		try 
+		{
 			oos = new ObjectOutputStream(
 					new FileOutputStream(DB_Name)
 					);
 			oos.writeObject(item);
 			oos.flush();
 			success = true;
-		}catch(IOException e) {
+		}
+		catch(IOException e) 
+		{
 			e.printStackTrace();
-		}finally {
-			try {
+		}
+		finally 
+		{
+			try 
+			{
 			   if(oos != null)oos.close();
-			}catch(IOException e) {
+			}
+			catch(IOException e) 
+			{
 				e.printStackTrace();
 			}
 		}
 		return success;
 	}
 
-	public Card readFirstRecord() {
+	public Card readFirstRecord() 
+	{
 		Card data = null;
 		ObjectInputStream ois = null;
 		
-		try {
+		try 
+		{
 			ois = new ObjectInputStream(
 					new FileInputStream(DB_Name)
 					);
-		} catch (FileNotFoundException e) {
+		} 
+		catch (FileNotFoundException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ClassNotFoundException e){
+		} 
+		catch (ClassNotFoundException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			try {
+		}
+		finally 
+		{
+			try 
+			{
 				if(ois!=null)ois.close();
-			}catch(IOException e) {
+			}
+			catch(IOException e) 
+			{
+				
 				e.printStackTrace();
 			}
 		}
